@@ -7,7 +7,7 @@ import forallstudio.mobilephone.data.MobileImage;
 import forallstudio.mobilephone.data.source.remote.base.RemoteClient;
 import io.reactivex.Flowable;
 
-class MobileRemoteDataSource implements IMobileRemoteDataSource {
+public class MobileRemoteDataSource implements IMobileRemoteDataSource {
 
     private static IMobileRemoteDataSource remoteDataSource;
 
