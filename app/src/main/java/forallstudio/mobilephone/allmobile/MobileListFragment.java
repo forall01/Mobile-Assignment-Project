@@ -19,9 +19,11 @@ import forallstudio.mobilephone.R;
 import forallstudio.mobilephone.data.Mobile;
 import forallstudio.mobilephone.data.source.MobileSortType;
 import forallstudio.mobilephone.databinding.FragmentMobileListBinding;
+import forallstudio.mobilephone.main.OnMobileSortTypeChangeListener;
 
 public class MobileListFragment extends Fragment implements
-        MobileListAdapter.MobileListAdapterListener, IMobileListPresenter.View {
+        MobileListAdapter.MobileListAdapterListener, IMobileListPresenter.View,
+        OnMobileSortTypeChangeListener {
 
     private FragmentMobileListBinding binding;
     private MobileListViewModel viewModel;
@@ -81,14 +83,21 @@ public class MobileListFragment extends Fragment implements
         presenter.onFavoriteClicked(mobile);
     }
 
+    @Override
+    public void openMobileDetailScreen(int mobileId) {
+        // TODO : open mobile detail screen
+    }
+
+    @Override
+    public void onSortChange(MobileSortType sort) {
+        this.sort = sort;
+        presenter.sortAllMobileList(sort);
+    }
+
     private void initRecycleView() {
         binding.listAllMobile.setLayoutManager(
                 new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false)
         );
     }
 
-    @Override
-    public void openMobileDetailScreen(int mobileId) {
-        // TODO : open mobile detail screen
-    }
 }

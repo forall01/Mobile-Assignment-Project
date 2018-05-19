@@ -1,10 +1,9 @@
 package forallstudio.mobilephone;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
-import forallstudio.mobilephone.allmobile.MobileListFragment;
-import forallstudio.mobilephone.favorite.MobileFavoriteFragment;
+import forallstudio.mobilephone.main.MobileFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -13,19 +12,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //showMobileListScreen();
-        showMobileFavoriteScreen();
+        showMobileInfoScreen();
     }
 
-    private void showMobileFavoriteScreen() {
+    private void showMobileInfoScreen() {
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.container, MobileFavoriteFragment.newInstance())
-                .commitAllowingStateLoss();
-    }
-
-    private void showMobileListScreen() {
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.container, MobileListFragment.newInstance())
+                .replace(R.id.container, MobileFragment.newInstance())
                 .commitAllowingStateLoss();
     }
 

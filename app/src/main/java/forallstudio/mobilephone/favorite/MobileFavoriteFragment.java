@@ -20,10 +20,11 @@ import forallstudio.mobilephone.R;
 import forallstudio.mobilephone.data.Mobile;
 import forallstudio.mobilephone.data.source.MobileSortType;
 import forallstudio.mobilephone.databinding.FragmentMobileFavoriteBinding;
+import forallstudio.mobilephone.main.OnMobileSortTypeChangeListener;
 
 public class MobileFavoriteFragment extends Fragment implements
         MobileFavoriteAdapter.MobileFavoriteAdapterListener, IMobileFavoritePresenter.View,
-        RecyclerItemTouchHelper.RecyclerItemTouchHelperListener {
+        RecyclerItemTouchHelper.RecyclerItemTouchHelperListener, OnMobileSortTypeChangeListener {
 
     private FragmentMobileFavoriteBinding binding;
     private MobileFavoriteViewModel viewModel;
@@ -100,6 +101,12 @@ public class MobileFavoriteFragment extends Fragment implements
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void onSortChange(MobileSortType sort) {
+        this.sort = sort;
+        presenter.getAllMobileFavorite(sort);
     }
 
 }

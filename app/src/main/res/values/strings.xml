@@ -7,5 +7,13 @@
     <string name="rating">Rating: %.1f</string>
 
     <string name="delete">Delete</string>
+    <string name="mobile_list">Mobile List</string>
+    <string name="favorite_list">Favorite List</string>
+
+    <string name="sort">Sort</string>
+
+    <string name="sort_by_price_low_to_high">Price low to high</string>
+    <string name="sort_by_price_high_to_low">Price high to low</string>
+    <string name="sort_by_rating_5_to_1">Rating 5–1</string>
 
 </resources>
