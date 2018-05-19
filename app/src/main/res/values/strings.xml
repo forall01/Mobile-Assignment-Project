@@ -7,5 +7,7 @@
     <string name="rating">Rating: %.1f</string>
 
     <string name="delete">Delete</string>
+    <string name="mobile_list">Mobile List</string>
+    <string name="favorite_list">Favorite List</string>
 
 </resources>
