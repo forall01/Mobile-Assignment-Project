@@ -38,8 +38,7 @@ public class RemoteClient implements IRemoteClient {
         OkHttpClient.Builder client = new OkHttpClient.Builder()
                 .connectTimeout(TIMEOUT_CONNECTION, TimeUnit.MINUTES)
                 .readTimeout(TIMEOUT_READ, TimeUnit.MINUTES)
-                .writeTimeout(TIMEOUT_WRITE, TimeUnit.MINUTES)
-                .addInterceptor(getInterceptor());
+                .writeTimeout(TIMEOUT_WRITE, TimeUnit.MINUTES);
 
         if (BuildConfig.DEBUG) {
             client.addInterceptor(getHttpLoggingInterceptor());
