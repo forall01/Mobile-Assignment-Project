@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <array name="sort_option">
+        <item>@string/sort_by_price_low_to_high</item>
+        <item>@string/sort_by_price_high_to_low</item>
+        <item>@string/sort_by_rating_5_to_1</item>
+    </array>
+
+</resources>
