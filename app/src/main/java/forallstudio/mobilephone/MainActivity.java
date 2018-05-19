@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import forallstudio.mobilephone.allmobile.MobileListFragment;
+import forallstudio.mobilephone.favorite.MobileFavoriteFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -12,7 +13,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        showMobileListScreen();
+        //showMobileListScreen();
+        showMobileFavoriteScreen();
+    }
+
+    private void showMobileFavoriteScreen() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.container, MobileFavoriteFragment.newInstance())
+                .commitAllowingStateLoss();
     }
 
     private void showMobileListScreen() {
