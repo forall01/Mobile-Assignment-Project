@@ -20,16 +20,8 @@ public enum MobileSortType {
         return fieldName;
     }
 
-    public void setFieldName(String fieldName) {
-        this.fieldName = fieldName;
-    }
-
     public Sort getSort() {
         return sort;
-    }
-
-    public void setSort(Sort sort) {
-        this.sort = sort;
     }
 
 }
