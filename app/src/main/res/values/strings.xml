@@ -6,4 +6,6 @@
     <string name="price">Price: $%.2f</string>
     <string name="rating">Rating: %.1f</string>
 
+    <string name="delete">Delete</string>
+
 </resources>
