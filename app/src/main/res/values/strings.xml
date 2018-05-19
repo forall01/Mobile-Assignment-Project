@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">MobilePhone</string>
+
+    <string name="content_description">contentDescription</string>
+
+    <string name="price">Price: $%.2f</string>
+    <string name="rating">Rating: %.1f</string>
+
 </resources>
