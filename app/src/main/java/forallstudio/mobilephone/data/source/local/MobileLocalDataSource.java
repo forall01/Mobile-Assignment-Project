@@ -65,11 +65,15 @@ public class MobileLocalDataSource implements IMobileLocalDataSource {
 
     @Override
     public Completable deleteMobileFavorite(int mobileId) {
-        Mobile mobile = getMobileById(mobileId);
-        realm.beginTransaction();
-        mobile.setFavorite(false);
-        realm.commitTransaction();
-        return Completable.complete();
+        try {
+            Mobile mobile = getMobileById(mobileId);
+            realm.beginTransaction();
+            mobile.setFavorite(false);
+            realm.commitTransaction();
+            return Completable.complete();
+        } catch (Exception e) {
+            return Completable.error(e);
+        }
     }
 
 }
