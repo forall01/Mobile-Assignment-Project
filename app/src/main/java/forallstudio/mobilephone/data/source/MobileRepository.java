@@ -59,6 +59,11 @@ public class MobileRepository implements IMobileRepository {
     }
 
     @Override
+    public Flowable<RealmResults<Mobile>> sortAllMobileList(MobileSortType sort) {
+        return localDataSource.getAllMobileList(sort.getFieldName(), sort.getSort()).asFlowable();
+    }
+
+    @Override
     public Mobile getMobileById(int mobileId) {
         return localDataSource.getMobileById(mobileId);
     }

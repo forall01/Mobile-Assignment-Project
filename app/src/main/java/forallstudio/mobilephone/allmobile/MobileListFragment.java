@@ -11,19 +11,24 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import java.util.List;
 
+import forallstudio.mobilephone.Injection;
 import forallstudio.mobilephone.R;
 import forallstudio.mobilephone.data.Mobile;
+import forallstudio.mobilephone.data.source.MobileSortType;
 import forallstudio.mobilephone.databinding.FragmentMobileListBinding;
 
 public class MobileListFragment extends Fragment implements
-        MobileListAdapter.MobileListAdapterListener {
+        MobileListAdapter.MobileListAdapterListener, IMobileListPresenter.View {
 
     private FragmentMobileListBinding binding;
     private MobileListViewModel viewModel;
+
+    private IMobileListPresenter.Action presenter;
+    private MobileSortType sort = MobileSortType.PRICE_LOW_TO_HIGH;
+
 
     public static MobileListFragment newInstance() {
         return new MobileListFragment();
@@ -33,6 +38,7 @@ public class MobileListFragment extends Fragment implements
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         viewModel = new MobileListViewModel();
+        presenter = new MobileListPresenter(Injection.provideMobileRepository(), viewModel, this);
     }
 
     @Nullable
@@ -50,6 +56,7 @@ public class MobileListFragment extends Fragment implements
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        presenter.getAllMobileList(sort);
     }
 
     @BindingAdapter({"bind:items", "bind:listener"})
@@ -66,12 +73,12 @@ public class MobileListFragment extends Fragment implements
 
     @Override
     public void onMobileClicked(Mobile mobile) {
-        Toast.makeText(getContext(), "mobile clicked: " + mobile.getName(), Toast.LENGTH_SHORT).show();
+        presenter.onMobileClicked(mobile);
     }
 
     @Override
     public void onFavoriteClicked(Mobile mobile) {
-        Toast.makeText(getContext(), "mobile favorite clicked: " + mobile.getName(), Toast.LENGTH_SHORT).show();
+        presenter.onFavoriteClicked(mobile);
     }
 
     private void initRecycleView() {
@@ -80,4 +87,8 @@ public class MobileListFragment extends Fragment implements
         );
     }
 
+    @Override
+    public void openMobileDetailScreen(int mobileId) {
+        // TODO : open mobile detail screen
+    }
 }

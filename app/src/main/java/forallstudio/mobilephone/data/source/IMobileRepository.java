@@ -16,6 +16,8 @@ public interface IMobileRepository {
 
     Flowable<List<MobileImage>> getMobileImages(int mobileId);
 
+    Flowable<RealmResults<Mobile>> sortAllMobileList(MobileSortType sort);
+
     Mobile getMobileById(int mobileId);
 
     Completable saveOrUpdateMobile(Mobile mobile);
