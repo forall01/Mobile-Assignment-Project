@@ -6,6 +6,8 @@ import forallstudio.mobilephone.data.source.MobileSortType;
 public interface IMobileFavoritePresenter {
 
     interface View {
+        void toastErrorMessage(String message);
+
         void openMobileDetailScreen(int mobileId);
     }
 

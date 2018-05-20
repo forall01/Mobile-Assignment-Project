@@ -12,6 +12,7 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -75,6 +76,11 @@ public class MobileFavoriteFragment extends Fragment implements
     }
 
     @Override
+    public void toastErrorMessage(String message) {
+        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
     public void openMobileDetailScreen(int mobileId) {
         MobileDetailActivity.open(getContext(), mobileId);
     }
@@ -100,7 +106,7 @@ public class MobileFavoriteFragment extends Fragment implements
             Mobile mobile = viewModel.getMobiles().get(position);
             presenter.onSwipeToDelete(mobile.getId());
         } catch (Exception e) {
-            e.printStackTrace();
+            toastErrorMessage(getString(R.string.error_message_can_not_delete_favorite));
         }
     }
 
