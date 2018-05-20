@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">MobilePhone</string>
+
+    <string name="content_description">contentDescription</string>
+
+    <string name="price">Price: $%.2f</string>
+    <string name="rating">Rating: %.1f</string>
+
+    <string name="delete">Delete</string>
+    <string name="mobile_list">Mobile List</string>
+    <string name="favorite_list">Favorite List</string>
+
+    <string name="sort">Sort</string>
+
+    <string name="sort_by_price_low_to_high">Price low to high</string>
+    <string name="sort_by_price_high_to_low">Price high to low</string>
+    <string name="sort_by_rating_5_to_1">Rating 5–1</string>
+
+    <string name="error_message_no_mobile_found">No Mobile Found</string>
+    <string name="error_message_no_mobile_favorite">No Mobile Favorite</string>
+    <string name="loading">Loading</string>
+    <string name="try_again">try again</string>
+    <string name="error_message_can_not_delete_favorite">Can\'t delete favorite!!!</string>
+
 </resources>

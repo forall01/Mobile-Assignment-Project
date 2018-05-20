@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="forallstudio.mobilephone.allmobile.MobileListViewModel" />
+
+        <variable
+            name="listener"
+            type="forallstudio.mobilephone.allmobile.MobileListFragment" />
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/include_view_empty_content"
+            layout="@layout/view_empty_content"
+            bind:isNoDataAvailable="@{viewModel.noContentAvailable}"
+            bind:isShowTryAgain="@{true}"
+            bind:message="@{@string/error_message_no_mobile_found}" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/list_all_mobile"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/light_gray"
+            android:visibility="@{viewModel.noContentAvailable ? View.GONE : View.VISIBLE}"
+            bind:items="@{viewModel.mobiles}"
+            bind:listener="@{listener}"
+            tools:listitem="@layout/item_mobile" />
+
+    </FrameLayout>
+
+</layout>
