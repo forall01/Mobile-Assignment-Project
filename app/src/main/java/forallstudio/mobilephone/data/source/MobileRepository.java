@@ -87,8 +87,15 @@ public class MobileRepository implements IMobileRepository {
         return localDataSource.deleteMobileFavorite(mobileId);
     }
 
+    /**
+     * Check and update favorite value before save or update to db
+     */
     private void saveMobileToDataBase(List<Mobile> mobiles) {
         for (Mobile mobile : mobiles) {
+            Mobile mobileById = getMobileById(mobile.getId());
+            if (mobileById != null && mobileById.isFavorite()) {
+                mobile.setFavorite(mobileById.isFavorite());
+            }
             saveOrUpdateMobile(mobile);
         }
     }
