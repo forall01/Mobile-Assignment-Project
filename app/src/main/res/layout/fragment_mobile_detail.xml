@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="forallstudio.mobilephone.detail.MobileDetailViewModel" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/pager_mobile_images"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                bind:items="@{viewModel.mobileImages}" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:background="@color/black_alpha_40"
+                android:paddingBottom="@dimen/normal"
+                android:paddingLeft="@dimen/medium"
+                android:paddingRight="@dimen/medium"
+                android:paddingTop="@dimen/normal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:text="@{String.format(@string/price, viewModel.mobile.price)}"
+                    android:textColor="@android:color/white"
+                    tools:text="@sample/simpledata_mobile.json/mobiles/price" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginStart="@dimen/normal"
+                    android:text="@{String.format(@string/rating, viewModel.mobile.rating)}"
+                    android:textColor="@android:color/white"
+                    tools:text="@sample/simpledata_mobile.json/mobiles/rating" />
+
+            </FrameLayout>
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/medium">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.mobile.name}"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                tools:text="@sample/simpledata_mobile.json/mobiles/name" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/normal"
+                android:text="@{viewModel.mobile.brand}"
+                android:textStyle="bold"
+                tools:text="@sample/simpledata_mobile.json/mobiles/brand" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/normal"
+            android:paddingEnd="@dimen/medium"
+            android:paddingStart="@dimen/medium"
+            android:text="@{viewModel.mobile.description}"
+            tools:text="@sample/simpledata_mobile.json/mobiles/description" />
+
+    </LinearLayout>
+
+</layout>
