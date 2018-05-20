@@ -20,6 +20,7 @@ import forallstudio.mobilephone.R;
 import forallstudio.mobilephone.data.Mobile;
 import forallstudio.mobilephone.data.source.MobileSortType;
 import forallstudio.mobilephone.databinding.FragmentMobileFavoriteBinding;
+import forallstudio.mobilephone.detail.MobileDetailActivity;
 import forallstudio.mobilephone.main.OnMobileSortTypeChangeListener;
 
 public class MobileFavoriteFragment extends Fragment implements
@@ -75,7 +76,7 @@ public class MobileFavoriteFragment extends Fragment implements
 
     @Override
     public void openMobileDetailScreen(int mobileId) {
-        // TODO : open mobile detail screen
+        MobileDetailActivity.open(getContext(), mobileId);
     }
 
     @Override
