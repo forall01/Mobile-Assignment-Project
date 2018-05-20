@@ -1,5 +1,6 @@
 package forallstudio.mobilephone.allmobile;
 
+import android.app.ProgressDialog;
 import android.databinding.BindingAdapter;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -26,12 +27,12 @@ public class MobileListFragment extends Fragment implements
         MobileListAdapter.MobileListAdapterListener, IMobileListPresenter.View,
         OnMobileSortTypeChangeListener {
 
+    private ProgressDialog progressDialog;
     private FragmentMobileListBinding binding;
     private MobileListViewModel viewModel;
 
     private IMobileListPresenter.Action presenter;
     private MobileSortType sort = MobileSortType.PRICE_LOW_TO_HIGH;
-
 
     public static MobileListFragment newInstance() {
         return new MobileListFragment();
@@ -50,7 +51,7 @@ public class MobileListFragment extends Fragment implements
                              @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil
                 .inflate(inflater, R.layout.fragment_mobile_list, container, false);
-        initRecycleView();
+        initView();
         binding.setViewModel(viewModel);
         binding.setListener(this);
         return binding.getRoot();
@@ -85,6 +86,18 @@ public class MobileListFragment extends Fragment implements
     }
 
     @Override
+    public void showLoadingDialog() {
+        progressDialog = ProgressDialog.show(getContext(), "", getString(R.string.loading), true);
+    }
+
+    @Override
+    public void hideLoadingDialog() {
+        if (progressDialog != null && progressDialog.isShowing()) {
+            progressDialog.dismiss();
+        }
+    }
+
+    @Override
     public void openMobileDetailScreen(int mobileId) {
         MobileDetailActivity.open(getContext(), mobileId);
     }
@@ -95,10 +108,13 @@ public class MobileListFragment extends Fragment implements
         presenter.sortAllMobileList(sort);
     }
 
-    private void initRecycleView() {
+    private void initView() {
         binding.listAllMobile.setLayoutManager(
                 new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false)
         );
+        binding.includeViewEmptyContent.buttonTryAgain.setOnClickListener(view -> {
+            presenter.getAllMobileList(sort);
+        });
     }
 
 }

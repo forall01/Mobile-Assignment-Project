@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:bind="http://schemas.android.com/apk/res-auto">
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -19,7 +20,8 @@
             android:contentDescription="@string/content_description"
             bind:defaultImage="@{@drawable/image_placeholder}"
             bind:errorImage="@{@drawable/image_placeholder}"
-            bind:imageUrl="@{imageUrl}" />
+            bind:imageUrl="@{imageUrl}"
+            tools:src="@drawable/image_placeholder" />
 
     </FrameLayout>
 

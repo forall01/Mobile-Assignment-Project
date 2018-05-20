@@ -72,6 +72,7 @@ public class MobileFavoritePresenter implements IMobileFavoritePresenter.Action 
 
     private void updateViewModel(RealmResults<Mobile> mobiles) {
         viewModel.setMobiles(copyFromRealm(mobiles));
+        viewModel.setNoContentAvailable(mobiles.isEmpty());
     }
 
     private List<Mobile> copyFromRealm(RealmResults<Mobile> mobiles) {

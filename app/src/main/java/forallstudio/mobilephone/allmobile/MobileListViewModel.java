@@ -13,6 +13,8 @@ public class MobileListViewModel extends BaseObservable {
 
     private List<Mobile> mobiles = new ArrayList<>();
 
+    private boolean isNoContentAvailable;
+
     @Bindable
     public List<Mobile> getMobiles() {
         return mobiles;
@@ -23,4 +25,13 @@ public class MobileListViewModel extends BaseObservable {
         notifyPropertyChanged(BR.mobiles);
     }
 
+    @Bindable
+    public boolean isNoContentAvailable() {
+        return isNoContentAvailable;
+    }
+
+    public void setNoContentAvailable(boolean noContentAvailable) {
+        isNoContentAvailable = noContentAvailable;
+        notifyPropertyChanged(BR.noContentAvailable);
+    }
 }

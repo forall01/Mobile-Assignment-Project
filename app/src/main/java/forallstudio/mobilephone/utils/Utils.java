@@ -3,7 +3,6 @@ package forallstudio.mobilephone.utils;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Point;
-import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.WindowManager;
@@ -11,7 +10,7 @@ import android.view.WindowManager;
 public class Utils {
 
     public static String convertUrlIfMissingHttpProtocol(String url) {
-        if (!TextUtils.isEmpty(url)) {
+        if (!isNullOrEmpty(url)) {
             boolean isMissingHttp = !url.startsWith("http://") && !url.startsWith("https://");
             if (isMissingHttp) {
                 url = "http://" + url;
@@ -20,6 +19,10 @@ public class Utils {
         } else {
             return "";
         }
+    }
+
+    public static boolean isNullOrEmpty(String str) {
+        return str == null || str.isEmpty();
     }
 
     public static Point getDefaultDisplay(Context context) {

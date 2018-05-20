@@ -39,7 +39,7 @@ public class MobileRepository implements IMobileRepository {
     public Flowable<RealmResults<Mobile>> getAllMobileList(MobileSortType sort) {
         return remoteDataSource.getAllMobileList()
                 .observeOn(AndroidSchedulers.mainThread())
-                .onErrorReturn(throwable -> Collections.emptyList())
+                .onErrorReturn(throwable -> Collections.emptyList()) // if error then return empty list
                 .doOnNext(this::saveMobileToDataBase)
                 .flatMap((Function<List<Mobile>, Flowable<RealmResults<Mobile>>>) mobiles ->
                         Flowable.fromCallable(() ->
@@ -57,14 +57,14 @@ public class MobileRepository implements IMobileRepository {
     @Override
     public Flowable<List<MobileImage>> getMobileImages(int mobileId) {
         return remoteDataSource.getMobileImages(mobileId)
+                .onErrorReturn(throwable -> Collections.emptyList()) // if error then return empty list
                 .map(mobileImages -> {
                     for (MobileImage mobileImage : mobileImages) {
                         String url = Utils.convertUrlIfMissingHttpProtocol(mobileImage.getUrl());
                         mobileImage.setUrl(url);
                     }
                     return mobileImages;
-                })
-                .onErrorReturn(throwable -> Collections.emptyList());
+                });
     }
 
     @Override
@@ -87,8 +87,15 @@ public class MobileRepository implements IMobileRepository {
         return localDataSource.deleteMobileFavorite(mobileId);
     }
 
+    /**
+     * Check and update favorite value before save or update to db
+     */
     private void saveMobileToDataBase(List<Mobile> mobiles) {
         for (Mobile mobile : mobiles) {
+            Mobile mobileById = getMobileById(mobile.getId());
+            if (mobileById != null && mobileById.isFavorite()) {
+                mobile.setFavorite(mobileById.isFavorite());
+            }
             saveOrUpdateMobile(mobile);
         }
     }
