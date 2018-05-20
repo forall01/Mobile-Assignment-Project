@@ -23,8 +23,10 @@
         android:orientation="vertical">
 
         <include
+            android:id="@+id/include_view_empty_content"
             layout="@layout/view_empty_content"
             bind:isNoDataAvailable="@{viewModel.noContentAvailable}"
+            bind:isShowTryAgain="@{true}"
             bind:message="@{@string/error_message_no_mobile_found}" />
 
         <android.support.v7.widget.RecyclerView

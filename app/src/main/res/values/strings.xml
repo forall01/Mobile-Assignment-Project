@@ -19,5 +19,6 @@
     <string name="error_message_no_mobile_found">No Mobile Found</string>
     <string name="error_message_no_mobile_favorite">No Mobile Favorite</string>
     <string name="loading">Loading</string>
+    <string name="try_again">try again</string>
 
 </resources>

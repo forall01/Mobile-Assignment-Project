@@ -25,6 +25,7 @@
         <include
             layout="@layout/view_empty_content"
             bind:isNoDataAvailable="@{viewModel.noContentAvailable}"
+            bind:isShowTryAgain="@{false}"
             bind:message="@{@string/error_message_no_mobile_favorite}" />
 
         <android.support.v7.widget.RecyclerView

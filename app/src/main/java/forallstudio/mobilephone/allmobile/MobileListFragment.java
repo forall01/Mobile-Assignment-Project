@@ -51,7 +51,7 @@ public class MobileListFragment extends Fragment implements
                              @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil
                 .inflate(inflater, R.layout.fragment_mobile_list, container, false);
-        initRecycleView();
+        initView();
         binding.setViewModel(viewModel);
         binding.setListener(this);
         return binding.getRoot();
@@ -108,10 +108,13 @@ public class MobileListFragment extends Fragment implements
         presenter.sortAllMobileList(sort);
     }
 
-    private void initRecycleView() {
+    private void initView() {
         binding.listAllMobile.setLayoutManager(
                 new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false)
         );
+        binding.includeViewEmptyContent.buttonTryAgain.setOnClickListener(view -> {
+            presenter.getAllMobileList(sort);
+        });
     }
 
 }
