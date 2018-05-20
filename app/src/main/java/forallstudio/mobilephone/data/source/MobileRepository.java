@@ -7,6 +7,7 @@ import forallstudio.mobilephone.data.Mobile;
 import forallstudio.mobilephone.data.MobileImage;
 import forallstudio.mobilephone.data.source.local.IMobileLocalDataSource;
 import forallstudio.mobilephone.data.source.remote.IMobileRemoteDataSource;
+import forallstudio.mobilephone.utils.Utils;
 import io.reactivex.Completable;
 import io.reactivex.Flowable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -55,7 +56,15 @@ public class MobileRepository implements IMobileRepository {
 
     @Override
     public Flowable<List<MobileImage>> getMobileImages(int mobileId) {
-        return remoteDataSource.getMobileImages(mobileId);
+        return remoteDataSource.getMobileImages(mobileId)
+                .map(mobileImages -> {
+                    for (MobileImage mobileImage : mobileImages) {
+                        String url = Utils.convertUrlIfMissingHttpProtocol(mobileImage.getUrl());
+                        mobileImage.setUrl(url);
+                    }
+                    return mobileImages;
+                })
+                .onErrorReturn(throwable -> Collections.emptyList());
     }
 
     @Override

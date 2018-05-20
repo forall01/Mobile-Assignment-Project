@@ -30,6 +30,8 @@
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:contentDescription="@string/content_description"
+                bind:defaultImage="@{@drawable/image_placeholder}"
+                bind:errorImage="@{@drawable/image_placeholder}"
                 bind:imageUrl="@{item.thumbImageUrl}" />
 
             <LinearLayout
