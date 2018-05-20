@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="viewModel"
             type="forallstudio.mobilephone.allmobile.MobileListViewModel" />
@@ -15,20 +17,26 @@
 
     </data>
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
+        <include
+            layout="@layout/view_empty_content"
+            bind:isNoDataAvailable="@{viewModel.noContentAvailable}"
+            bind:message="@{@string/error_message_no_mobile_found}" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/list_all_mobile"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/light_gray"
+            android:visibility="@{viewModel.noContentAvailable ? View.GONE : View.VISIBLE}"
             bind:items="@{viewModel.mobiles}"
             bind:listener="@{listener}"
             tools:listitem="@layout/item_mobile" />
 
-    </LinearLayout>
+    </FrameLayout>
 
 </layout>

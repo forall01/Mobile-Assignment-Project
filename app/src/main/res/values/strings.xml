@@ -16,4 +16,8 @@
     <string name="sort_by_price_high_to_low">Price high to low</string>
     <string name="sort_by_rating_5_to_1">Rating 5–1</string>
 
+    <string name="error_message_no_mobile_found">No Mobile Found</string>
+    <string name="error_message_no_mobile_favorite">No Mobile Favorite</string>
+    <string name="loading">Loading</string>
+
 </resources>

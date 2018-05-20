@@ -6,6 +6,10 @@ import forallstudio.mobilephone.data.source.MobileSortType;
 public interface IMobileListPresenter {
 
     interface View {
+        void showLoadingDialog();
+
+        void hideLoadingDialog();
+
         void openMobileDetailScreen(int mobileId);
     }
 

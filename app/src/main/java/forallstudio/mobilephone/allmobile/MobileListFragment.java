@@ -1,5 +1,6 @@
 package forallstudio.mobilephone.allmobile;
 
+import android.app.ProgressDialog;
 import android.databinding.BindingAdapter;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -26,12 +27,12 @@ public class MobileListFragment extends Fragment implements
         MobileListAdapter.MobileListAdapterListener, IMobileListPresenter.View,
         OnMobileSortTypeChangeListener {
 
+    private ProgressDialog progressDialog;
     private FragmentMobileListBinding binding;
     private MobileListViewModel viewModel;
 
     private IMobileListPresenter.Action presenter;
     private MobileSortType sort = MobileSortType.PRICE_LOW_TO_HIGH;
-
 
     public static MobileListFragment newInstance() {
         return new MobileListFragment();
@@ -82,6 +83,18 @@ public class MobileListFragment extends Fragment implements
     @Override
     public void onFavoriteClicked(Mobile mobile) {
         presenter.onFavoriteClicked(mobile);
+    }
+
+    @Override
+    public void showLoadingDialog() {
+        progressDialog = ProgressDialog.show(getContext(), "", getString(R.string.loading), true);
+    }
+
+    @Override
+    public void hideLoadingDialog() {
+        if (progressDialog != null && progressDialog.isShowing()) {
+            progressDialog.dismiss();
+        }
     }
 
     @Override

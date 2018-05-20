@@ -2,7 +2,6 @@ package forallstudio.mobilephone.allmobile;
 
 import android.annotation.SuppressLint;
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import java.util.List;
 
@@ -37,7 +36,9 @@ public class MobileListPresenter implements IMobileListPresenter.Action {
         repository.getAllMobileList(sort)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnError(errorHandler())
+                .doOnSubscribe(subscription -> view.showLoadingDialog())
+                .doOnError(throwable -> view.hideLoadingDialog())
+                .doOnComplete(() -> view.hideLoadingDialog())
                 .subscribe(updateViewModelAndObserveDataChange());
     }
 
@@ -63,7 +64,7 @@ public class MobileListPresenter implements IMobileListPresenter.Action {
 
     @NonNull
     private Consumer<Throwable> errorHandler() {
-        return throwable -> Log.d("---->", "Throwable : " + throwable.toString());
+        return throwable -> view.hideLoadingDialog();
     }
 
     @NonNull
@@ -84,6 +85,7 @@ public class MobileListPresenter implements IMobileListPresenter.Action {
 
     private void updateViewModel(RealmResults<Mobile> mobileResults) {
         viewModel.setMobiles(copyFromRealm(mobileResults));
+        viewModel.setNoContentAvailable(mobileResults.isEmpty());
     }
 
     private List<Mobile> copyFromRealm(RealmResults<Mobile> mobiles) {
